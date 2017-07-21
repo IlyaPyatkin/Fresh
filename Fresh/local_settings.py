@@ -33,7 +33,7 @@ DATABASES = {
 ###################
 
 # Domains for public site
-# ALLOWED_HOSTS = [""]
+ALLOWED_HOSTS = ['127.0.0.1','localhost','[::1]']
 
 # These settings are used by the default fabfile.py provided.
 # Check fabfile.py for defaults.
