@@ -36,7 +36,7 @@ from django.utils.translation import ugettext_lazy as _
 # Controls the formatting of monetary values accord to the locale
 # module in the python standard library. If an empty string is
 # used, will fall back to the system's locale.
-# SHOP_CURRENCY_LOCALE = ""
+SHOP_CURRENCY_LOCALE = "ru"
 
 # Dotted package path and name of the function that
 # is called on submit of the billing/shipping checkout step. This
@@ -62,6 +62,10 @@ from django.utils.translation import ugettext_lazy as _
 #     (2, "Processed"),
 # )
 
+SHOP_USE_WISHLIST = False
+SHOP_USE_VARIATIONS = False
+SHOP_USE_UPSELL_PRODUCTS = False
+
 # Sequence of value/name pairs for types of product options,
 # eg Size, Colour. NOTE: Increasing the number of these will
 # require database migrations!
@@ -86,6 +90,16 @@ from django.utils.translation import ugettext_lazy as _
 # overriding. Please consult the settings documentation for a full list
 # of settings Mezzanine implements:
 # http://mezzanine.jupo.org/docs/configuration.html#default-settings
+
+SEARCH_MODEL_CHOICES = ('shop.Product', 'shop.Category')
+ACCOUNTS_PROFILE_VIEWS_ENABLED = True
+COMMENTS_REMOVED_VISIBLE = False
+COMMENTS_ACCOUNT_REQUIRED = True
+MEDIA_LIBRARY_PER_SITE = True
+RATINGS_ACCOUNT_REQUIRED = True
+
+SITE_TAGLINE = 'An open source content management platform.'
+SITE_TITLE = 'Mezzanine'
 
 # Controls the ordering and grouping of the admin menu.
 #
@@ -173,18 +187,18 @@ ALLOWED_HOSTS = []
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "ru"
 
 # Supported languages
 LANGUAGES = (
-    ('en', _('English')),
+	('ru', _('Russian')),
 )
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
@@ -193,13 +207,13 @@ LANGUAGES = (
 DEBUG = False
 
 # Whether a user's session cookie expires when the Web browser is closed.
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 
@@ -317,11 +331,11 @@ INSTALLED_APPS = (
     "mezzanine.generic",
     "mezzanine.pages",
     "cartridge.shop",
-    "mezzanine.blog",
+    # "mezzanine.blog",
     "mezzanine.forms",
-    "mezzanine.galleries",
-    "mezzanine.twitter",
-    # "mezzanine.accounts",
+    # "mezzanine.galleries",
+    # "mezzanine.twitter",
+    "mezzanine.accounts",
     # "mezzanine.mobile",
 )
 
@@ -334,7 +348,7 @@ MIDDLEWARE_CLASSES = (
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     # Uncomment if using internationalisation or localisation
-    # 'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
