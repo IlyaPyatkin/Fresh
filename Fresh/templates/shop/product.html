@@ -84,7 +84,7 @@ $(document).ready(function() {
 {{ product.content|richtext_filters|safe }}
 {% endeditable %}
 
-{% if product.available and has_available_variations %}
+{% if product.available and has_available_variations and product.in_stock %}
 <ul id="variations" class="list-unstyled">
     {% for variation in variations %}
     <li id="variation-{{ variation.sku }}"
@@ -139,7 +139,7 @@ $(document).ready(function() {
             <div class="caption">
             <h6>{{ product }}</h6>
             <div class="price-info">
-            {% if product.has_price %}
+            {% if product.has_price and product.in_stock %}
                 {% if product.on_sale %}
                 <span class="old-price">{{ product.unit_price|currency }}</span>
                 {% trans "On sale:" %}
