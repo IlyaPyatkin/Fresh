@@ -7,8 +7,9 @@ from django.views.i18n import set_language
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
 from mezzanine.pages.views import page
+from Fresh.views import invoice
 
-from cartridge.shop.views import order_history
+from cartridge.shop import views 
 
 
 admin.autodiscover()
@@ -31,8 +32,15 @@ if settings.USE_MODELTRANSLATION:
 urlpatterns += [
 
     # Cartridge URLs.
-    url("^shop/", include("cartridge.shop.urls")),
-    url("^account/orders/$", order_history, name="shop_order_history"),
+    #url("^shop/", include("cartridge.shop.urls")),
+    url("^shop/product/(?P<slug>.*)/$", views.product, name="shop_product"),
+    url("^shop/cart/$", views.cart, name="shop_cart"),
+    url("^shop/checkout/$", views.checkout_steps, name="shop_checkout"),
+    url("^shop/checkout/complete/$", views.complete, name="shop_complete"),
+    url("^shop/invoice/(?P<order_id>\d+)/$", invoice, name="shop_invoice"),
+    url("^shop/invoice/(?P<order_id>\d+)/resend/$",
+        views.invoice_resend_email, name="shop_invoice_resend"),
+    url("^account/orders/$", views.order_history, name="shop_order_history"),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
