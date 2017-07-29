@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Cartridge\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-30 10:40-0430\n"
-"PO-Revision-Date: 2017-07-25 22:27+0300\n"
+"PO-Revision-Date: 2017-07-27 15:10+0300\n"
 "Last-Translator: Sebastián Ramírez Magrí <sebasmagri@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/cartridge/"
 "language/ru/)\n"
@@ -921,15 +921,15 @@ msgstr "Заказ завершен"
 
 #: templates/shop/complete.html:75
 msgid "Thank you for shopping with us, your order is complete."
-msgstr ""
+msgstr "Благодарим за пользование нашим сервисом, Ваш заказ готов."
 
 #: templates/shop/complete.html:76
 msgid "We've sent you a receipt via email."
-msgstr ""
+msgstr "Мы прислали описание заказа на указанную почту."
 
 #: templates/shop/complete.html:77
 msgid "You can also view your invoice using one of the links below."
-msgstr ""
+msgstr "Вы также можете открыть счет, используя ссылку ниже."
 
 #: templates/shop/complete.html:81
 msgid "View invoice in your browser"
@@ -1032,3 +1032,21 @@ msgstr "Платежная информация"
 #: templates/shop/includes/payment_fields.html:8
 msgid "Card Expiry"
 msgstr ""
+
+msgid "Shipped"
+msgstr "Доставлен"
+
+msgid "Not shipped"
+msgstr "Не доставлен"
+
+msgid "Order ID"
+msgstr "ID Заказа"
+
+msgid "User order"
+msgstr "Персональный заказ"
+
+msgid "User orders"
+msgstr "Персональные заказы"
+
+msgid "User order item"
+msgstr "Товар персонального заказа"
