@@ -35,6 +35,7 @@
                 <a class="btn btn-sm btn-primary" href="{% url "shop_invoice" order.id %}?format=pdf">{% trans "Download PDF" %}</a>
                 {% endif %}
                 <a class="btn btn-sm btn-default" target="_blank" href="{% url "shop_invoice" order.id %}">{% trans "View invoice" %}</a>
+                <input type="submit" class="btn btn-sm btn-default" value="{% trans "Re-send order email" %}">
             </form>
         </td>
     </tr>
