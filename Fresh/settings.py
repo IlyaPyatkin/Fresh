@@ -65,6 +65,18 @@ SHOP_CURRENCY_LOCALE = "ru"
 SHOP_USE_WISHLIST = False
 SHOP_USE_VARIATIONS = False
 SHOP_USE_UPSELL_PRODUCTS = False
+SHOP_CHECKOUT_STEPS_SPLIT = False
+SHOP_PAYMENT_STEP_ENABLED = False
+SHOP_DISCOUNT_FIELD_IN_CART = False
+SHOP_DISCOUNT_FIELD_IN_CHECKOUT = False
+SHOP_PRODUCT_SORT_OPTIONS = (
+    (_("Recently added"), "-date_added"),
+    (_("Oldest"), "date_added"),
+    (_("Highest rated"), "-rating_average"),
+    (_("Lowest rated"), "rating_average"),
+    (_("Least expensive"), "unit_price"),
+    (_("Most expensive"), "-unit_price"),
+)
 
 # Sequence of value/name pairs for types of product options,
 # eg Size, Colour. NOTE: Increasing the number of these will
@@ -73,6 +85,7 @@ SHOP_USE_UPSELL_PRODUCTS = False
 #     (1, "Size"),
 #     (2, "Colour"),
 # )
+SHOP_OPTION_TYPE_CHOICES = ()
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
@@ -92,25 +105,22 @@ SHOP_USE_UPSELL_PRODUCTS = False
 # http://mezzanine.jupo.org/docs/configuration.html#default-settings
 
 SEARCH_MODEL_CHOICES = ('shop.Product', 'shop.Category')
-ACCOUNTS_PROFILE_VIEWS_ENABLED = True
-COMMENTS_REMOVED_VISIBLE = False
-COMMENTS_ACCOUNT_REQUIRED = True
-MEDIA_LIBRARY_PER_SITE = True
-RATINGS_ACCOUNT_REQUIRED = True
+ACCOUNTS_NO_USERNAME = True
+EMAIL_FAIL_SILENTLY = True
+
+RICHTEXT_FILTER_LEVEL = 3
 
 SITE_TAGLINE = 'An open source content management platform.'
 SITE_TITLE = 'Mezzanine'
 
 # Controls the ordering and grouping of the admin menu.
 #
-# ADMIN_MENU_ORDER = (
-#     ("Content", ("pages.Page", "blog.BlogPost",
-#        "generic.ThreadedComment", (_("Media Library"), "fb_browse"),)),
-#     (_("Shop"), ("shop.Product", "shop.ProductOption", "shop.DiscountCode",
-#        "shop.Sale", "shop.Order")),
-#     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-#     ("Users", ("auth.User", "auth.Group",)),
-# )
+ADMIN_MENU_ORDER = (
+    ("Content", ("pages.Page", (_("Media Library"), "fb_browse"),)),
+    (_("Shop"), ("shop.Product", "shop.Order", "Fresh.UserOrder")),
+    ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
+    ("Users", ("auth.User", "auth.Group",)),
+)
 
 # A three item sequence, each containing a sequence of template tags
 # used to render the admin dashboard.
@@ -316,24 +326,24 @@ if DJANGO_VERSION < (1, 9):
 ################
 
 INSTALLED_APPS = (
-	"Fresh",
+    "mezzanine.generic",
+    "mezzanine.conf",
+    "Fresh",
+    "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.redirects",
     "django.contrib.sessions",
-    "django.contrib.sites",
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
     "mezzanine.boot",
-    "mezzanine.conf",
     "mezzanine.core",
-    "mezzanine.generic",
     "mezzanine.pages",
     "cartridge.shop",
     # "mezzanine.blog",
     "mezzanine.forms",
-    # "mezzanine.galleries",
+    "mezzanine.galleries",
     # "mezzanine.twitter",
     "mezzanine.accounts",
     # "mezzanine.mobile",
@@ -408,6 +418,14 @@ if os.path.exists(f):
     module.__file__ = f
     sys.modules[module_name] = module
     exec(open(f, "rb").read())
+
+
+import filebrowser_safe.settings
+
+filebrowser_safe.settings.EXTENSIONS = {
+    'Folder': [''],
+    'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff']
+}
 
 
 ####################
