@@ -85,7 +85,6 @@ SHOP_PRODUCT_SORT_OPTIONS = (
 #     (1, "Size"),
 #     (2, "Colour"),
 # )
-SHOP_OPTION_TYPE_CHOICES = ()
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
